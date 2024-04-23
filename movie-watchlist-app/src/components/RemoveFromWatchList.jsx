@@ -13,7 +13,7 @@ const handleClick = () => {
         <span className=' whitespace-nowrap' onClick={handleClick} >Remove From Watchlist ❌</span>
         
       </div> */}
-      <button className=' whitespace-nowrap bg-white px-4 rounded-lg relative top-32 right-4' onClick={handleClick}> Remove From Watchlist ❌</button>
+      <button className=' whitespace-nowrap bg-white px-4 rounded-lg relative top-32 right-4 hover:bg-blue-500 hover:text-white' onClick={handleClick}> Remove From Watchlist ❌</button>
     </>
   );
 };
