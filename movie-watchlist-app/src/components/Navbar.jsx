@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { NavLink } from "react-router-dom"; // Use NavLink for active link highlighting
 import { FaSearch } from "react-icons/fa";
@@ -15,6 +15,9 @@ const Navbar = () => {
     const [nav, setNav] = useState(false);
     const [activeLink, setActiveLink] = useState(null);
     const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+    // const username=user.name;
+    // console.log("username is:" ,username);
+    // localStorage.setItem(username)
     
     const dispatch = useDispatch();
     // const history=useHistory();
@@ -30,13 +33,6 @@ const Navbar = () => {
         //     // dispatch(addToWatchlist(term))
         //     console.log(event)
     };
-    // useEffect(() => {
-    //     const username=user.name;
-    //     console.log("username is:" ,username);
-    //     localStorage.setItem('username',username)
-            
-    // }, [user])
-    
 
     const submitHandler = (e) => {
         e.preventDefault();

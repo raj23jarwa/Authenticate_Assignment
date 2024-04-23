@@ -9,10 +9,11 @@ const handleClick = () => {
 
   return (
     <>
-      <div className='relative top-32 right-4 bg-white w-92 text-black flex flex-row justify-center items-center rounded-xl px-4 hover:bg-blue-500 hover:text-white'>
+      {/* <div className='relative top-32 right-4 bg-white w-92 text-black flex flex-row justify-center items-center rounded-xl px-4 hover:bg-blue-500 hover:text-white'>
         <span className=' whitespace-nowrap' onClick={handleClick} >Remove From Watchlist ❌</span>
         
-      </div>
+      </div> */}
+      <button className=' whitespace-nowrap bg-white px-4 rounded-lg relative top-32 right-4' onClick={handleClick}> Remove From Watchlist ❌</button>
     </>
   );
 };
