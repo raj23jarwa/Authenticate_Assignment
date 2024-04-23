@@ -15,23 +15,12 @@ const Navbar = () => {
     const [nav, setNav] = useState(false);
     const [activeLink, setActiveLink] = useState(null);
     const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
-    // const username=user.name;
-    // console.log("username is:" ,username);
-    // localStorage.setItem(username)
-    
+  
     const dispatch = useDispatch();
-    // const history=useHistory();
 
     const handleSearchInputChange = (event) => {
         // event.preventDefault();
         setTerm(event.target.value);
-        //     // console.log("term is :",term)
-        // if (term === "") return ; //(toast.warning("Please Enter movies or shows"))
-        //     // // history.push('/home')
-        //     // dispatch(fetchAsyncMovies(term));
-        //     // dispatch(fetchAsyncShows(term));
-        //     // dispatch(addToWatchlist(term))
-        //     console.log(event)
     };
 
     const submitHandler = (e) => {
