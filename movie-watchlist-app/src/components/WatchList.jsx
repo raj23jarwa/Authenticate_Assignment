@@ -1,65 +1,65 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import RemoveFromWatchList from './RemoveFromWatchList';
-import { useSelector } from 'react-redux';
-import { removeFromWatchlist } from "../features/movies/movieSlice";
-import { useEffect } from 'react';
-import { getAllWatchlist } from '../features/movies/movieSlice';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeFromWatchlist, getAllWatchlist } from '../features/movies/movieSlice';
+
 const WatchList = () => {
-    const dispatch = useDispatch();
-    const watchlistedMovies = useSelector(getAllWatchlist);
-    console.log("watchlisted movieS:", watchlistedMovies);
+  const dispatch = useDispatch();
+  const watchlistedMovies = useSelector(getAllWatchlist);
 
-    const handleRemoveFromWatchlist = (movieKey) => {
-        dispatch(removeFromWatchlist(movieKey));
-        toast.success("Movie Removed from Watchlist");
-    }
-    useEffect(() => {
-        // Save watchlist to local storage whenever it changes
-        localStorage.setItem("watchlist", JSON.stringify(watchlistedMovies));
-    }, [watchlistedMovies]);
+  const handleRemoveFromWatchlist = (movieKey) => {
+    dispatch(removeFromWatchlist(movieKey));
+    toast.success("Movie Removed from Watchlist");
+  };
 
-    return (
-        <>
-            <div className='z-10 w-full'>
-                <h1 className='text-3xl text-white p-4'>Watchlist</h1>
-                <div className="grid grid-cols-2 gap-6 md:grid-cols-4 lg:grid-cols-5 px-4">
-                    {watchlistedMovies.length === 0 ? (
-                        <div className="text-white">Your watchlist is empty.</div>
-                    ) : (
-                        watchlistedMovies.map((movie, index) => (
-                            <div key={index} className='relative transition-transform hover:scale-110 cursor-pointer'>
-                               <div className='relative  flex items-center justify-center bg-black bg-opacity-70 opacity-100  transition-opacity'>
-                                 <div className='bg-gray-500'>
-                                <Link to={`/movie/${movie.imdbID}`}>
-                                    <img src={movie.Poster} alt='movie' className='w-64 h-72' />
-                                </Link>
-                                </div>
-                                </div>
-                                     <RemoveFromWatchList
-                                        movieKey={movie.imdbID}
-                                        handleRemoveFromWatchlist={handleRemoveFromWatchlist}
-                                    /> 
-                                    
-                                          {/* <button className=' whitespace-nowrap bg-white px-4 rounded-lg relative  hover:bg-blue-500 hover:text-white' onClick={handleRemoveFromWatchlist}> Remove From Watchlist ❌</button> */}
+  useEffect(() => {
+    localStorage.setItem("watchlist", JSON.stringify(watchlistedMovies));
+  }, [watchlistedMovies]);
 
-                               
-                            </div>
-                        ))
-                    )}
+  return (
+    <>
+      <div className="w-full min-h-screen bg-gradient-to-b from-gray-800 to-black text-white p-6">
+        <h1 className="text-4xl font-bold mb-6">Your Watchlist</h1>
+        <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          {watchlistedMovies.length === 0 ? (
+            <div className="col-span-full text-center text-xl">
+              Your watchlist is empty.
+            </div>
+          ) : (
+            watchlistedMovies.map((movie, index) => (
+              <div
+                key={index}
+                className="relative transition-transform transform hover:scale-105"
+              >
+                <div className="relative overflow-hidden rounded-lg shadow-lg bg-gray-700 hover:bg-gray-600">
+                  <Link to={`/movie/${movie.imdbID}`}>
+                    <img
+                      src={movie.Poster}
+                      alt={movie.Title}
+                      className="w-full h-80 object-cover rounded-t-lg"
+                    />
+                  </Link>
+                  <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-70 opacity-0 hover:opacity-100 transition-opacity duration-300">
+                    <div className="text-center">
+                      <h3 className="text-xl font-semibold mb-2">{movie.Title}</h3>
+                      <RemoveFromWatchList
+                        movieKey={movie.imdbID}
+                        handleRemoveFromWatchlist={handleRemoveFromWatchlist}
+                      />
+                    </div>
+                  </div>
                 </div>
-            </div>
-            <div className="movie-wrapper">
-                <ToastContainer
-                    autoClose={2000}
-                    transition={Slide}
-                />
-            </div>
-        </>
-    );
+              </div>
+            ))
+          )}
+        </div>
+      </div>
+      <ToastContainer autoClose={2000} transition={Slide} />
+    </>
+  );
 };
 
 export default WatchList;
