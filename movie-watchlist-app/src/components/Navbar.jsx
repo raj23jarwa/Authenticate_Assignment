@@ -53,7 +53,7 @@ const Navbar = () => {
                         onChange={handleSearchInputChange}
                         className="w-full p-2 rounded-l-lg bg-gray-800 text-gray-300 focus:outline-none"
                     />
-                    <button type="submit" className="p-[0.80rem] bg-indigo-600 rounded-r-lg hover:bg-indigo-700">
+                    <button type="submit" className="p-[0.79rem] bg-indigo-600 rounded-r-lg hover:bg-indigo-700">
                         <FaSearch className="text-white " />
                     </button>
                 </form>

@@ -43,7 +43,7 @@ const MovieListing = () => {
 
       />
       <div className="movie-list bg-gradient-to-b from-gray-800 to-black">
-        <h2 className="text-2xl font-semibold text-white mb-4">Movies</h2>
+        <h2 className="text-2xl font-semibold text-white mb-4 p-4">Movies</h2>
         <div className=" px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12 py-4">
           {renderMovies}
         </div>
